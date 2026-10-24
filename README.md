@@ -54,3 +54,17 @@ The EC2 IAM role needs read access to the input data and read/write access to th
 The project uses MovieLens data. Follow the dataset provider terms of use.
 Recommendation scores are heuristic ranking signals and are not guaranteed measures of user preference.
 This project is intended for educational and demonstration purposes.
+
+## Screenshots
+
+### Dashboard Overview
+![Dashboard Overview](screenshots/dashboard-overview.png)
+
+### Recommendation Graphs
+![Recommendation Graphs](screenshots/recommendation-graphs.png)
+
+### Recommendation Results
+![Recommendation Results](screenshots/recommendation-results.png)
+
+### Movie Poster Gallery
+![Movie Poster Gallery](screenshots/movie-posters.png)
