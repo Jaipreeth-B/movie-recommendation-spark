@@ -1,0 +1,29 @@
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dashboard-venv/
+
+# Backup files
+*backup*
+*.bak
+*.orig
+
+# Generated results and temporary files
+results/
+*.log
+.DS_Store
+
+# Project-specific generated files
+spark-error.log
+test_s3_read.py
