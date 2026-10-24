@@ -68,3 +68,11 @@ This project is intended for educational and demonstration purposes.
 
 ### Movie Poster Gallery
 ![Movie Poster Gallery](screenshots/movie-posters.png)
+
+## Live Demo
+
+Try the Movie Recommendation System here:
+
+**[Open Movie Recommendation Dashboard](http://13.54.124.12:8501)**
+
+The demo runs on AWS EC2 and may be unavailable when the instance is stopped.
