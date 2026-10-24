@@ -50,6 +50,69 @@ The EC2 IAM role needs read access to the input data and read/write access to th
 3. Load recommendations from S3 if the cache exists.
 4. Otherwise, run Spark and save the resulting CSV to S3.
 
+## System Architecture
+
+```mermaid
+flowchart TD
+    A["MovieLens Dataset"] --> B["Amazon S3: Input Data"]
+    B --> C["Apache Spark on EC2"]
+    C --> D["Pearson Correlation"]
+    C --> E["Genre Similarity"]
+    D --> F["Hybrid Recommendation Score"]
+    E --> F
+    F --> G["Recommendations CSV"]
+    G --> H["Amazon S3: Results and Cache"]
+    H --> I["Streamlit Dashboard"]
+    I --> J["Movie Selection, Charts and Results"]
+    I --> K["TMDB Movie Posters"]
+```
+
+## Recommendation Algorithm
+
+The system combines collaborative filtering with movie genre similarity to rank recommendations.
+
+### 1. Pearson Correlation
+
+Pearson correlation measures the similarity between the ratings of two movies from users who rated both. The system requires at least 20 common users and keeps positive correlations.
+
+### 2. Confidence Adjustment
+
+Correlations based on fewer shared users are given less weight:
+
+\[
+C = r \times \frac{n}{n+50}
+\]
+
+Where:
+- \(r\) is the Pearson correlation.
+- \(n\) is the number of common users.
+- \(C\) is the confidence-adjusted correlation.
+
+### 3. Genre Similarity
+
+Jaccard similarity measures the overlap between the genre sets of two movies:
+
+\[
+J(A,B)=\frac{|A\cap B|}{|A\cup B|}
+\]
+
+Here, \(A\) and \(B\) are the sets of genres for the two movies.
+
+### 4. Final Recommendation Score
+
+The system combines confidence-adjusted correlation and genre similarity:
+
+\[
+S = 0.7C + 0.3J
+\]
+
+Correlation confidence contributes 70% and genre similarity contributes 30%.
+
+### 5. Ranking and Caching
+
+Recommendations are ranked using the selected-movie matches, final score, and total common users, following the implementation's ranking order. Results are stored in Amazon S3 and reused when a matching versioned cache entry exists.
+
+
 ## Dataset and Disclaimer
 The project uses MovieLens data. Follow the dataset provider terms of use.
 Recommendation scores are heuristic ranking signals and are not guaranteed measures of user preference.
