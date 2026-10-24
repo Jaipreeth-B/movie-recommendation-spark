@@ -23,6 +23,11 @@ movie-recommendation/
 ├── dashboard/
 │   ├── app.py
 │   └── requirements.txt
+├── screenshots/
+│   ├── dashboard-overview.png
+│   ├── recommendation-results.png
+│   ├── movie-posters.png
+│   └── dashboard-cache.png
 ├── recommend_movies_multi.py
 ├── README.md
 └── .gitignore
