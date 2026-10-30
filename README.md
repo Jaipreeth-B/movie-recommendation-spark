@@ -97,21 +97,28 @@ Where:
 
 Jaccard similarity measures the overlap between the genre sets of two movies:
 
-\[
-J(A,B)=\frac{|A\cap B|}{|A\cup B|}
-\]
+J(A, B) = |A ∩ B| / |A ∪ B|
 
-Here, \(A\) and \(B\) are the sets of genres for the two movies.
+Here, (A) and (B) are the sets of genres for the two movies.
 
 ### 4. Final Recommendation Score
 
 The system combines confidence-adjusted correlation and genre similarity:
 
-\[
-S = 0.7C + 0.3J
-\]
+**Formula:**
 
-Correlation confidence contributes 70% and genre similarity contributes 30%.
+S = (0.7 * C) + (0.3 * J)
+
+Where:
+- S = Final recommendation score
+- C = Confidence-adjusted correlation score
+- J = Genre similarity score (Jaccard similarity)
+
+**Weight Distribution:**
+- Correlation confidence contributes 70% (0.7).
+- Genre similarity contributes 30% (0.3).
+
+The final score combines both factors to generate recommendations.
 
 ### 5. Ranking and Caching
 
